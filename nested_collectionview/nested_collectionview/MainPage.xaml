@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="nested_collectionview.MainPage"
+             BindingContext="{Binding Source={StaticResource VM_A}}"
+             >
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Offers}" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+
+                        <Label Text="{Binding title}" />
+
+                        <CollectionView ItemsSource="{Binding Locations}" Grid.Row="1">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Frame HeightRequest="20" WidthRequest="100" VerticalOptions="Start" Margin="5,0,5,0">
+                                            <Label Text="{Binding City}" />
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>
